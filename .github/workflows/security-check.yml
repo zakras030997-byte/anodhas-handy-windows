@@ -1,0 +1,72 @@
+name: Check Windows installer safety
+on:
+  push:
+    branches: [installer-security-check]
+    paths: ['.github/workflows/security-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    runs-on: windows-2022
+    timeout-minutes: 30
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ANODHAS-Handy-Windows-x64-Offline
+          run-id: 39434173023
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: original
+      - uses: actions/download-artifact@v4
+        with:
+          name: ANODHAS-Handy-0.9.8-Windows-x86_64-pc-windows-msvc
+          run-id: 39426792088
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: base
+      - name: Inventory and inspect signatures without execution
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Force evidence | Out-Null
+          Get-ChildItem original,base -Recurse -File | ForEach-Object {
+            $sig=Get-AuthenticodeSignature $_.FullName
+            [pscustomobject]@{File=$_.FullName;SHA256=(Get-FileHash $_.FullName -Algorithm SHA256).Hash;Signature=$sig.Status.ToString();Signer=$sig.SignerCertificate.Subject}
+          } | ConvertTo-Json -Depth 4 | Set-Content evidence/signatures.json
+          $sevenZip = 'C:\Program Files\7-Zip\7z.exe'
+          & $sevenZip x original/ANODHAS-Handy-0.9.8-Windows-x64-Offline-Setup.exe '-oextracted-outer' -y
+          if ($LASTEXITCODE -ne 0) { throw 'Outer extraction failed' }
+          $baseExe = Get-ChildItem base -Recurse -Filter '*setup.exe' | Select-Object -First 1
+          & $sevenZip x $baseExe.FullName '-oextracted-app' -y
+          if ($LASTEXITCODE -ne 0) { throw 'App extraction failed' }
+          Get-ChildItem extracted-outer,extracted-app -Recurse -File | ForEach-Object {
+            if ($_.Extension -in '.exe','.dll','.ps1') {
+              $sig=Get-AuthenticodeSignature $_.FullName
+              [pscustomobject]@{File=$_.FullName;SHA256=(Get-FileHash $_.FullName -Algorithm SHA256).Hash;Signature=$sig.Status.ToString();Signer=$sig.SignerCertificate.Subject}
+            }
+          } | ConvertTo-Json -Depth 4 | Set-Content evidence/payload-signatures.json
+      - name: Scan original installer and extracted payload with Microsoft Defender
+        run: |
+          $ErrorActionPreference='Stop'
+          Get-MpComputerStatus | Select-Object AMServiceEnabled,AntivirusEnabled,AntivirusSignatureVersion,AntivirusSignatureLastUpdated,AMEngineVersion | ConvertTo-Json | Tee-Object evidence/defender-status-before.json
+          Update-MpSignature
+          Get-MpComputerStatus | Select-Object AMServiceEnabled,AntivirusEnabled,AntivirusSignatureVersion,AntivirusSignatureLastUpdated,AMEngineVersion | ConvertTo-Json | Tee-Object evidence/defender-status-after.json
+          $mp=Get-ChildItem 'C:\ProgramData\Microsoft\Windows Defender\Platform' -Directory | Sort-Object Name -Descending | Select-Object -First 1
+          $cmd=Join-Path $mp.FullName 'MpCmdRun.exe'
+          $results=@()
+          foreach($target in @('original','base','extracted-outer','extracted-app')) {
+            & $cmd -Scan -ScanType 3 -File (Join-Path $pwd $target) -DisableRemediation 2>&1 | Tee-Object "evidence/scan-$target.txt"
+            $results += [pscustomobject]@{Target=$target;ExitCode=$LASTEXITCODE}
+          }
+          $results | ConvertTo-Json | Set-Content evidence/scan-exit-codes.json
+          Get-MpThreatDetection | ConvertTo-Json -Depth 8 | Set-Content evidence/threats.json
+          Get-MpThreat | ConvertTo-Json -Depth 8 | Set-Content evidence/threat-names.json
+          $results | Format-Table
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: installer-security-evidence
+          path: evidence/
+          if-no-files-found: error
