@@ -1,0 +1,10 @@
+NVIDIA Parakeet TDT 0.6B v3, GGUF Q4_K_M.
+Base model: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
+GGUF conversion/quantization: handy-computer/transcribe.cpp contributors.
+Source: https://huggingface.co/handy-computer/parakeet-tdt-0.6b-v3-gguf
+License: Creative Commons Attribution 4.0 International (CC-BY-4.0).
+License text: https://creativecommons.org/licenses/by/4.0/legalcode
+Redistributed quantized weights; no changes to the included GGUF file.
+SHA256: b68557be1e3c40207fd7c4bd9d63f1d3316b963f15325bfb0cc16a8bb0ffd181
+Handy application: cjpais/Handy (MIT), ANODHAS packaging and branding.
+Microsoft Edge WebView2 Evergreen Standalone Runtime is included unmodified.
