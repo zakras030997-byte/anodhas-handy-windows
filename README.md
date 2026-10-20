@@ -20,6 +20,8 @@ Actions → ANODHAS Handy Windows EXE → Run workflow. Результат — �
 
 ## Полный автономный установщик
 
-Готовая сборка с моделью Parakeet TDT v3 Q4_K_M и Microsoft WebView2: [проверенный архив](https://github.com/zakras030997-byte/anodhas-handy-windows/actions/runs/39434173023/artifacts/12269871503). Исходники упаковки — ветка `offline-ready`, процесс `.github/workflows/offline.yml`. Это дополнительный полный EXE; стандартный установщик выше остаётся доступен.
+**Статус: тестовый комплект заблокирован Chrome как опасный; до завершения проверки Google и подготовки подписанного выпуска его не следует использовать для обычной установки.** Defender с базами 1.461.119.0 угроз не обнаружил; это не отменяет вердикт Chrome. [Результаты проверки](https://github.com/zakras030997-byte/anodhas-handy-windows/blob/installer-security-check/security/security-review.json).
+
+Архив исходной проверяемой сборки с моделью Parakeet TDT v3 Q4_K_M и Microsoft WebView2: [проверенный архив](https://github.com/zakras030997-byte/anodhas-handy-windows/actions/runs/39434173023/artifacts/12269871503). Исходники упаковки — ветка `offline-ready`, процесс `.github/workflows/offline.yml`. Это дополнительный полный EXE; стандартный установщик выше остаётся доступен.
 
 На Windows подтверждены тихая установка, контрольная сумма установленной модели, её автоматический выбор и распознавание фразы `The quick brown fox jumps over the lazy dog.` на CPU при заблокированном исходящем сетевом доступе для handy.exe. Модель и WebView2 находятся внутри EXE, отдельно загружать их пользователю не требуется. Реальные микрофон и горячая клавиша проверяются на целевом компьютере.
