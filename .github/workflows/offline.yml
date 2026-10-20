@@ -1,0 +1,115 @@
+name: ANODHAS Handy Offline Installer
+on:
+  workflow_dispatch:
+  push:
+    branches: [offline-installer]
+    paths: ['.github/workflows/offline.yml', 'offline/**']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  offline-x64:
+    runs-on: windows-2022
+    timeout-minutes: 45
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v5
+      - name: Download verified ANODHAS application installer
+        uses: actions/download-artifact@v4
+        with:
+          name: ANODHAS-Handy-0.9.8-Windows-x86_64-pc-windows-msvc
+          run-id: 39426792088
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: base-installer
+      - name: Prepare offline payload
+        run: |
+          $ErrorActionPreference = 'Stop'
+          New-Item -ItemType Directory -Force offline/payload | Out-Null
+          $base = Get-ChildItem base-installer -Recurse -Filter '*setup.exe' | Select-Object -First 1
+          if (-not $base) { throw 'Application installer not found' }
+          if ((Get-FileHash $base.FullName -Algorithm SHA256).Hash.ToLower() -ne '5bdf4869600836a8ba047a384f8da47e1466b0373393a991f6d5087ac1da62cc') { throw 'Base installer checksum mismatch' }
+          Copy-Item $base.FullName offline/payload/app-setup.exe
+          $model = 'parakeet-tdt-0.6b-v3-Q4_K_M.gguf'
+          Invoke-WebRequest "https://huggingface.co/handy-computer/parakeet-tdt-0.6b-v3-gguf/resolve/85ac09ea12fc4b1112fa76810059364bc6adc9de/$model" -OutFile "offline/payload/$model"
+          if ((Get-FileHash "offline/payload/$model" -Algorithm SHA256).Hash.ToLower() -ne 'b68557be1e3c40207fd7c4bd9d63f1d3316b963f15325bfb0cc16a8bb0ffd181') { throw 'Model checksum mismatch' }
+          Invoke-WebRequest 'https://go.microsoft.com/fwlink/?linkid=2124701' -OutFile offline/payload/WebView2.exe
+          $signature = Get-AuthenticodeSignature offline/payload/WebView2.exe
+          if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'O=Microsoft Corporation') { throw 'WebView2 Microsoft signature verification failed' }
+          Get-ChildItem offline/payload -File | ForEach-Object { "$(($_ | Get-FileHash -Algorithm SHA256).Hash)  $($_.Name)" } | Set-Content offline/PAYLOAD-SHA256.txt
+      - name: Install NSIS compiler
+        run: |
+          choco install nsis -y --no-progress
+          if ($LASTEXITCODE -ne 0) { throw 'NSIS installation failed' }
+      - name: Build full offline EXE
+        working-directory: offline
+        run: |
+          & 'C:\Program Files (x86)\NSIS\makensis.exe' /V3 offline.nsi
+          if ($LASTEXITCODE -ne 0) { throw 'NSIS compilation failed' }
+      - name: Test full installation and model discovery
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $setup = (Resolve-Path 'offline/ANODHAS-Handy-0.9.8-Windows-x64-Offline-Setup.exe').Path
+          $p = Start-Process $setup -ArgumentList '/S' -Wait -PassThru
+          if ($p.ExitCode -ne 0) { throw "Offline installation failed: $($p.ExitCode)" }
+          $app = Join-Path $env:LOCALAPPDATA 'ANODHAS Handy\handy.exe'
+          $model = Join-Path $env:APPDATA 'ai.anodhas.handy\models\parakeet-tdt-0.6b-v3-Q4_K_M.gguf'
+          if (-not (Test-Path $app)) { throw 'Installed application missing' }
+          if ((Get-FileHash $model -Algorithm SHA256).Hash.ToLower() -ne 'b68557be1e3c40207fd7c4bd9d63f1d3316b963f15325bfb0cc16a8bb0ffd181') { throw 'Installed model mismatch' }
+          $settings = Get-Content (Join-Path $env:APPDATA 'ai.anodhas.handy\settings_store.json') -Raw | ConvertFrom-Json
+          if ($settings.settings.selected_model -ne 'handy-computer/parakeet-tdt-0.6b-v3-gguf/parakeet-tdt-0.6b-v3-Q4_K_M.gguf') { throw 'Bundled model is not selected' }
+          New-NetFirewallRule -DisplayName 'ANODHAS Offline Test' -Direction Outbound -Program $app -Action Block | Out-Null
+          try {
+            $p = Start-Process $app -ArgumentList '--list-models','--json' -Wait -PassThru -RedirectStandardOutput model-list.json -RedirectStandardError model-list.log
+            if ($p.ExitCode -ne 0) { Get-Content model-list.log; throw 'Offline model listing failed' }
+            $listing = Get-Content model-list.json -Raw
+            $listing | Write-Host
+            if ($listing -notmatch 'parakeet-tdt-0.6b-v3-Q4_K_M.gguf') { throw 'Bundled model not discovered' }
+          } finally {
+            Remove-NetFirewallRule -DisplayName 'ANODHAS Offline Test'
+          }
+      - name: Test actual recognition without network access
+        run: |
+          $ErrorActionPreference = 'Stop'
+          Add-Type -AssemblyName System.Speech
+          $speech = New-Object System.Speech.Synthesis.SpeechSynthesizer
+          $format = New-Object System.Speech.AudioFormat.SpeechAudioFormatInfo(16000, [System.Speech.AudioFormat.AudioBitsPerSample]::Sixteen, [System.Speech.AudioFormat.AudioChannel]::Mono)
+          $speech.SetOutputToWaveFile((Join-Path $pwd 'sample.wav'), $format)
+          $speech.Speak('The quick brown fox jumps over the lazy dog.')
+          $speech.Dispose()
+          $app = Join-Path $env:LOCALAPPDATA 'ANODHAS Handy\handy.exe'
+          New-NetFirewallRule -DisplayName 'ANODHAS Recognition Test' -Direction Outbound -Program $app -Action Block | Out-Null
+          try {
+            $p = Start-Process $app -ArgumentList '--transcribe-file', (Join-Path $pwd 'sample.wav'), '--json' -Wait -PassThru -RedirectStandardOutput recognition.json -RedirectStandardError recognition.log
+            Get-Content recognition.log -Tail 35
+            if ($p.ExitCode -ne 0) { throw "Offline recognition failed: $($p.ExitCode)" }
+            $result = Get-Content recognition.json -Raw
+            $result | Write-Host
+            if ($result -notmatch '(?i)quick brown fox' -or $result -notmatch '(?i)lazy dog') { throw 'Expected spoken phrase missing from recognition result' }
+          } finally {
+            Remove-NetFirewallRule -DisplayName 'ANODHAS Recognition Test'
+          }
+      - name: Hash final installer
+        run: |
+          Get-FileHash offline/ANODHAS-Handy-0.9.8-Windows-x64-Offline-Setup.exe -Algorithm SHA256 | Format-List | Out-File offline/INSTALLER-SHA256.txt
+      - name: Upload ready offline installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: ANODHAS-Handy-Windows-x64-Offline
+          path: |
+            offline/ANODHAS-Handy-0.9.8-Windows-x64-Offline-Setup.exe
+            offline/INSTALLER-SHA256.txt
+            offline/PAYLOAD-SHA256.txt
+            offline/MODEL-NOTICE.txt
+            recognition.json
+          if-no-files-found: error
+          retention-days: 30
+      - name: Upload diagnostic logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: offline-build-diagnostics
+          path: |
+            *.log
+            *.json
