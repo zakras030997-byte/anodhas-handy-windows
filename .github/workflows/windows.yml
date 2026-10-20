@@ -1,0 +1,21 @@
+name: ANODHAS Handy Windows EXE
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/**'
+permissions:
+  contents: read
+jobs:
+  windows-x64:
+    uses: ./.github/workflows/build-anodhas.yml
+    with:
+      platform: windows-2022
+      target: x86_64-pc-windows-msvc
+      repository: cjpais/Handy
+      ref: 14f6f0d31cb22a4268acfbddba3052820fd0a06e
+      build-args: --bundles nsis,msi
+      sign-binaries: false
+      asset-prefix: ANODHAS-Handy-0.9.8-Windows
+      upload-artifacts: true
