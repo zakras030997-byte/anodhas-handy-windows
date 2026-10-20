@@ -1037,10 +1037,11 @@ jobs:
           if ($unexpected) { $unexpected | Format-Table FullName; throw 'Nested installer or PowerShell found in package' }
           $model=Get-ChildItem native-contents -Recurse -Filter 'parakeet-tdt-0.6b-v3-Q4_K_M.gguf' | Select-Object -First 1
           if (-not $model -or (Get-FileHash $model.FullName -Algorithm SHA256).Hash.ToLower() -ne 'b68557be1e3c40207fd7c4bd9d63f1d3316b963f15325bfb0cc16a8bb0ffd181') { throw 'Model absent or corrupt in installer' }
-          $install=Join-Path $env:TEMP 'anodhas-native-test'
+          $install=Join-Path $env:LOCALAPPDATA 'ANODHAS-Native-Test'
           $p=Start-Process $setup.FullName -ArgumentList @('/S','/PORTABLE',"/D=$install") -Wait -PassThru
           if ($p.ExitCode -ne 0) { throw 'Native installation failed' }
-          $app=Join-Path $install 'handy.exe'
+          $app=(Get-Item -LiteralPath (Join-Path $install 'handy.exe')).FullName
+          Write-Host "Installed app for offline test: $app"
           Add-Type -AssemblyName System.Speech
           $speech=New-Object System.Speech.Synthesis.SpeechSynthesizer
           $format=New-Object System.Speech.AudioFormat.SpeechAudioFormatInfo(16000,[System.Speech.AudioFormat.AudioBitsPerSample]::Sixteen,[System.Speech.AudioFormat.AudioChannel]::Mono)
@@ -1066,7 +1067,7 @@ jobs:
           Get-FileHash $setup.FullName -Algorithm SHA256 | Format-List
 
       - name: Upload artifacts (Windows)
-        if: inputs.upload-artifacts && contains(inputs.platform, 'windows')
+        if: always() && inputs.upload-artifacts && contains(inputs.platform, 'windows')
         uses: actions/upload-artifact@v7
         with:
           name: ${{ inputs.asset-prefix }}-${{ inputs.target }}
