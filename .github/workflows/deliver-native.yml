@@ -1,0 +1,33 @@
+name: Deliver native model installer EXE
+on:
+  push:
+    branches: [native-model-installer]
+    paths: ['.github/workflows/deliver-native.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  deliver:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ANODHAS-Handy-Native-With-Model-x86_64-pc-windows-msvc
+          run-id: 39440297585
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: built
+      - name: Select unchanged verified EXE
+        shell: pwsh
+        run: |
+          $ErrorActionPreference='Stop'
+          New-Item -ItemType Directory ready | Out-Null
+          $exe=Get-ChildItem built -Recurse -Filter '*setup.exe' | Select-Object -First 1
+          if (-not $exe) { throw 'Verified EXE missing' }
+          Copy-Item $exe.FullName 'ready/ANODHAS-Handy-0.9.8-Windows-x64-With-Model-Setup.exe'
+          Get-FileHash 'ready/ANODHAS-Handy-0.9.8-Windows-x64-With-Model-Setup.exe' -Algorithm SHA256 | Format-List
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ANODHAS-Handy-Native-EXE-with-Model
+          path: ready/*.exe
+          compression-level: 0
+          retention-days: 30
