@@ -2,7 +2,7 @@ name: ANODHAS Handy Offline Installer
 on:
   workflow_dispatch:
   push:
-    branches: [offline-installer]
+    branches: [offline-ready]
     paths: ['.github/workflows/offline.yml', 'offline/**']
 permissions:
   contents: read
@@ -64,7 +64,7 @@ jobs:
           $ErrorActionPreference = 'Stop'
           $setup = (Resolve-Path 'offline/ANODHAS-Handy-0.9.8-Windows-x64-Offline-Setup.exe').Path
           $p = Start-Process $setup -ArgumentList '/S' -Wait -PassThru
-          if ($p.ExitCode -ne 0) { throw "Offline installation failed: $($p.ExitCode)" }
+          if ($p.ExitCode -ne 0) { Get-Content "$env:TEMP/ANODHAS-configure.log" -ErrorAction SilentlyContinue; throw "Offline installation failed: $($p.ExitCode)" }
           $app = Join-Path $env:LOCALAPPDATA 'ANODHAS Handy\handy.exe'
           $model = Join-Path $env:APPDATA 'ai.anodhas.handy\models\parakeet-tdt-0.6b-v3-Q4_K_M.gguf'
           if (-not (Test-Path $app)) { throw 'Installed application missing' }
