@@ -36,7 +36,9 @@ jobs:
             [pscustomobject]@{File=$_.FullName;SHA256=(Get-FileHash $_.FullName -Algorithm SHA256).Hash;Signature=$sig.Status.ToString();Signer=$sig.SignerCertificate.Subject}
           } | ConvertTo-Json -Depth 4 | Set-Content evidence/signatures.json
           $sevenZip = 'C:\Program Files\7-Zip\7z.exe'
-          & $sevenZip x original/ANODHAS-Handy-0.9.8-Windows-x64-Offline-Setup.exe '-oextracted-outer' -y
+          $outer = Get-ChildItem original -Recurse -Filter '*Offline-Setup.exe' | Select-Object -First 1
+          if (-not $outer) { throw 'Original offline installer missing from artifact' }
+          & $sevenZip x $outer.FullName '-oextracted-outer' -y
           if ($LASTEXITCODE -ne 0) { throw 'Outer extraction failed' }
           $baseExe = Get-ChildItem base -Recurse -Filter '*setup.exe' | Select-Object -First 1
           & $sevenZip x $baseExe.FullName '-oextracted-app' -y
