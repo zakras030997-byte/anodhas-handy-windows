@@ -50,7 +50,12 @@ Section
   SetOutPath "$INSTDIR"
   File "MODEL-NOTICE.txt"
   DetailPrint "Проверка и выбор модели распознавания…"
-  ExecWait 'powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$PLUGINSDIR\configure.ps1"' $0
+  nsExec::ExecToStack '"$SYSDIR\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$PLUGINSDIR\configure.ps1"'
+  Pop $0
+  Pop $1
+  FileOpen $2 "$TEMP\ANODHAS-configure.log" w
+  FileWrite $2 $1
+  FileClose $2
   ${If} $0 != 0
     MessageBox MB_ICONSTOP "Настройка модели не завершена (код $0)." /SD IDOK
     SetErrorLevel 30
