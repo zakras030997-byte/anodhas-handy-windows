@@ -1,0 +1,20 @@
+name: Native ANODHAS Handy with Model
+on:
+  workflow_dispatch:
+  push:
+    branches: [native-model-installer]
+    paths: ['.github/workflows/native.yml', '.github/workflows/build-native.yml']
+permissions:
+  contents: read
+jobs:
+  windows:
+    uses: ./.github/workflows/build-native.yml
+    with:
+      platform: windows-2022
+      target: x86_64-pc-windows-msvc
+      repository: cjpais/Handy
+      ref: 14f6f0d31cb22a4268acfbddba3052820fd0a06e
+      build-args: --bundles nsis,msi
+      sign-binaries: false
+      asset-prefix: ANODHAS-Handy-Native-With-Model
+      upload-artifacts: true
