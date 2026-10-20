@@ -5,7 +5,7 @@ Name "ANODHAS Handy — Offline"
 OutFile "ANODHAS-Handy-0.9.8-Windows-x64-Offline-Setup.exe"
 InstallDir "$LOCALAPPDATA\ANODHAS Handy"
 RequestExecutionLevel user
-SetCompressor /SOLID lzma
+SetCompressor zlib
 !define MUI_ABORTWARNING
 !insertmacro MUI_PAGE_WELCOME
 !insertmacro MUI_PAGE_INSTFILES
@@ -20,19 +20,29 @@ Section
   File /oname=app-setup.exe "payload\app-setup.exe"
   File /oname=WebView2.exe "payload\WebView2.exe"
   File "configure.ps1"
-  DetailPrint "Установка Microsoft WebView2…"
-  ExecWait '"$PLUGINSDIR\WebView2.exe" /silent /install' $0
-  ${If} $0 != 0
-  ${AndIf} $0 != 3010
-    MessageBox MB_ICONSTOP "Не удалось установить WebView2 (код $0)." /SD IDOK
-    SetErrorLevel 1
-    Abort
+  ReadRegStr $1 HKLM "SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}" "pv"
+  ${If} $1 == ""
+    ReadRegStr $1 HKLM "SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}" "pv"
+  ${EndIf}
+  ${If} $1 == ""
+    ReadRegStr $1 HKCU "SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}" "pv"
+  ${EndIf}
+  ${If} $1 == ""
+  ${OrIf} $1 == "0.0.0.0"
+    DetailPrint "Установка Microsoft WebView2…"
+    ExecWait '"$PLUGINSDIR\WebView2.exe" /silent /install' $0
+    ${If} $0 != 0
+    ${AndIf} $0 != 3010
+      MessageBox MB_ICONSTOP "Не удалось установить WebView2 (код $0)." /SD IDOK
+      SetErrorLevel 10
+      Abort
+    ${EndIf}
   ${EndIf}
   DetailPrint "Установка ANODHAS Handy…"
   ExecWait '"$PLUGINSDIR\app-setup.exe" /S /D=$INSTDIR' $0
   ${If} $0 != 0
     MessageBox MB_ICONSTOP "Не удалось установить приложение (код $0)." /SD IDOK
-    SetErrorLevel 1
+    SetErrorLevel 20
     Abort
   ${EndIf}
   SetOutPath "$APPDATA\ai.anodhas.handy\models"
@@ -43,7 +53,7 @@ Section
   ExecWait 'powershell.exe -NoProfile -NonInteractive -ExecutionPolicy Bypass -File "$PLUGINSDIR\configure.ps1"' $0
   ${If} $0 != 0
     MessageBox MB_ICONSTOP "Настройка модели не завершена (код $0)." /SD IDOK
-    SetErrorLevel 1
+    SetErrorLevel 30
     Abort
   ${EndIf}
 SectionEnd
