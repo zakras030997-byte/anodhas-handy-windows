@@ -1,0 +1,34 @@
+{
+  "review_date": "2026-10-20",
+  "artifact_run": 39434173023,
+  "installer_sha256": "92BAE78EF89FBC6F269B44987C8543A39E74EB251029F440F71BA1B7EFE22EAF",
+  "chrome_verdict": "Dangerous file blocked; precise server-side detection reason is not exposed by the browser UI.",
+  "defender": {
+    "engine": "1.1.26090.9",
+    "signatures": "1.461.119.0",
+    "active": true,
+    "scan_exit_codes": {
+      "original": 0,
+      "base": 0,
+      "extracted-outer": 0,
+      "extracted-app": 0
+    },
+    "threats_detected": false
+  },
+  "authenticode": {
+    "outer_installer": "NotSigned",
+    "application": "NotSigned",
+    "base_installer": "NotSigned",
+    "webview2": "Valid Microsoft Corporation"
+  },
+  "assessment": "Defender did not reproduce a malware detection. This does not invalidate Chrome’s verdict or prove a false positive. No evidence supports assigning the exact Chrome cause to unsigned status alone.",
+  "release_requirements": [
+    "Keep the blocked build out of normal distribution pending vendor review.",
+    "Use one native Windows installer with model resources; avoid a nested installer and PowerShell ExecutionPolicy Bypass in the customer installation flow.",
+    "Sign application, native binaries and final installer with trusted Authenticode publisher identity. Self-signed certificates and protection exclusions are not acceptable.",
+    "Run independent signed-payload integrity, antivirus, offline recognition and installation checks.",
+    "Submit the blocked exact hash/URL to Google for review through the supported vendor channel.",
+    "A new signed file can still require reputation review; do not promise that a signature alone removes every warning."
+  ],
+  "mac_application_modified": false
+}
