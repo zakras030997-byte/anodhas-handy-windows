@@ -1,3 +1,6 @@
+$env:PSModulePath = "$PSHOME\Modules"
+Import-Module Microsoft.PowerShell.Utility -ErrorAction Stop
+Import-Module Microsoft.PowerShell.Management -ErrorAction Stop
 $ErrorActionPreference = 'Stop'
 $root = Join-Path $env:APPDATA 'ai.anodhas.handy'
 $model = Join-Path $root 'models\parakeet-tdt-0.6b-v3-Q4_K_M.gguf'
