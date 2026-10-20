@@ -38,6 +38,18 @@ jobs:
           $signature = Get-AuthenticodeSignature offline/payload/WebView2.exe
           if ($signature.Status -ne 'Valid' -or $signature.SignerCertificate.Subject -notmatch 'O=Microsoft Corporation') { throw 'WebView2 Microsoft signature verification failed' }
           Get-ChildItem offline/payload -File | ForEach-Object { "$(($_ | Get-FileHash -Algorithm SHA256).Hash)  $($_.Name)" } | Set-Content offline/PAYLOAD-SHA256.txt
+      - name: Validate model configuration before packaging
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $previousAppData = $env:APPDATA
+          try {
+            $env:APPDATA = Join-Path $pwd 'configuration-test'
+            New-Item -ItemType Directory -Force "$env:APPDATA/ai.anodhas.handy/models" | Out-Null
+            New-Item -ItemType HardLink -Path "$env:APPDATA/ai.anodhas.handy/models/parakeet-tdt-0.6b-v3-Q4_K_M.gguf" -Target (Resolve-Path 'offline/payload/parakeet-tdt-0.6b-v3-Q4_K_M.gguf').Path | Out-Null
+            & "$env:WINDIR/SysWOW64/WindowsPowerShell/v1.0/powershell.exe" -NoProfile -NonInteractive -ExecutionPolicy Bypass -File offline/configure.ps1
+            if ($LASTEXITCODE -ne 0) { throw '32-bit configuration script failed before packaging' }
+            Get-Content "$env:APPDATA/ai.anodhas.handy/settings_store.json"
+          } finally { $env:APPDATA = $previousAppData }
       - name: Install NSIS compiler
         run: |
           choco install nsis -y --no-progress
