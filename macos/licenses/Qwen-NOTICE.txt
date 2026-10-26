@@ -1,0 +1,5 @@
+Qwen3-TTS 12Hz 1.7B Base, MLX 4-bit conversion.
+Base model: Qwen team, https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-Base
+MLX conversion: mlx-community, https://huggingface.co/mlx-community/Qwen3-TTS-12Hz-1.7B-Base-4bit
+Conversion revision: 37e955a1deb861c088ae5f3a67043185f3d1a60c
+License: Apache-2.0, see Qwen-LICENSE.txt. The distributed model is a quantized conversion.

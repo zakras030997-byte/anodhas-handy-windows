@@ -1,0 +1,8 @@
+Parakeet TDT 0.6B v3, GGUF Q4_K_M conversion
+Base model by NVIDIA; GGUF conversion by handy-computer.
+Licensed under Creative Commons Attribution 4.0 International (CC-BY-4.0).
+License and legal code: https://creativecommons.org/licenses/by/4.0/
+Original model: https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3
+GGUF conversion: https://huggingface.co/handy-computer/parakeet-tdt-0.6b-v3-gguf
+Conversion revision: 85ac09ea12fc4b1112fa76810059364bc6adc9de
+The distributed file is a quantized GGUF conversion; ANODHAS does not relicense it under MIT.

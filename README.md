@@ -25,3 +25,8 @@ Actions → ANODHAS Handy Windows EXE → Run workflow. Результат — �
 Архив исходной проверяемой сборки с моделью Parakeet TDT v3 Q4_K_M и Microsoft WebView2: [проверенный архив](https://github.com/zakras030997-byte/anodhas-handy-windows/actions/runs/39434173023/artifacts/12269871503). Исходники упаковки — ветка `offline-ready`, процесс `.github/workflows/offline.yml`. Это дополнительный полный EXE; стандартный установщик выше остаётся доступен.
 
 На Windows подтверждены тихая установка, контрольная сумма установленной модели, её автоматический выбор и распознавание фразы `The quick brown fox jumps over the lazy dog.` на CPU при заблокированном исходящем сетевом доступе для handy.exe. Модель и WebView2 находятся внутри EXE, отдельно загружать их пользователю не требуется. Реальные микрофон и горячая клавиша проверяются на целевом компьютере.
+
+
+## macOS: голосовая студия ANODHAS
+
+[Автономная macOS-сборка с Parakeet и Qwen3-TTS](macos/README.md) добавлена отдельным рецептом. Исходные Windows-процессы выше сохранены. Личные записи, профили и веса моделей в Git не включены.
