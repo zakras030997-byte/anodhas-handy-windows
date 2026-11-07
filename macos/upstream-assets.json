@@ -1,0 +1,345 @@
+{
+  "upstream_commit": "14f6f0d31cb22a4268acfbddba3052820fd0a06e",
+  "assets": [
+    {
+      "path": "sponsor-images/epicenter.png",
+      "git_blob_sha": "4b949cb725fcb5638c4c47755879d95bd78bd4e0",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/sponsor-images/epicenter.png"
+    },
+    {
+      "path": "sponsor-images/wordcab.png",
+      "git_blob_sha": "dd2c12b021c531d44dcc932f72a2a62340b5a7a4",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/sponsor-images/wordcab.png"
+    },
+    {
+      "path": "sponsor-images/boltai.jpg",
+      "git_blob_sha": "53cd3afa48e8f99f21c34dd51003280cf6ce2419",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/sponsor-images/boltai.jpg"
+    },
+    {
+      "path": "sponsor-images/cantydigital.png",
+      "git_blob_sha": "2df1d36d277caeea59e0ab95cfde9d1faa0827b3",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/sponsor-images/cantydigital.png"
+    },
+    {
+      "path": "public/release-notes/0.9.7/shortcut-behavior.png",
+      "git_blob_sha": "7e1cdaaf291789045860f3c3cf86c7b93a9d1cb8",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/public/release-notes/0.9.7/shortcut-behavior.png"
+    },
+    {
+      "path": "public/release-notes/0.9.0/overlay.png",
+      "git_blob_sha": "e5cae224cdbd68efc3c0cf57394049e7b44342fb",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/public/release-notes/0.9.0/overlay.png"
+    },
+    {
+      "path": "src-tauri/resources/tray_transcribing_dark.png",
+      "git_blob_sha": "d3d9cd2f5b91e02b676a9b43c2c56a088877f067",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_transcribing_dark.png"
+    },
+    {
+      "path": "src-tauri/resources/pop_start.wav",
+      "git_blob_sha": "86ef9d4fa294886704ec61217072309581186cb4",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/pop_start.wav"
+    },
+    {
+      "path": "src-tauri/resources/marimba_stop.wav",
+      "git_blob_sha": "6ac2b6125fe34d9901d35edb979acfdee8b642e4",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/marimba_stop.wav"
+    },
+    {
+      "path": "src-tauri/resources/handy_warning.png",
+      "git_blob_sha": "55e84e83eb83966d74498045052a8ef4c2151866",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/handy_warning.png"
+    },
+    {
+      "path": "src-tauri/resources/recording.png",
+      "git_blob_sha": "e3ced1536bb02f796649b71589f313aca6dbfc6f",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/recording.png"
+    },
+    {
+      "path": "src-tauri/resources/pop_stop.wav",
+      "git_blob_sha": "7b9376dae531ac8730a59b53c400c87688cdafc7",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/pop_stop.wav"
+    },
+    {
+      "path": "src-tauri/resources/marimba_start.wav",
+      "git_blob_sha": "f2d01c587ca26dca23ea664cbed6634254920561",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/marimba_start.wav"
+    },
+    {
+      "path": "src-tauri/resources/tray_idle.png",
+      "git_blob_sha": "3892aa829962431e94bae2d58e291b2308b7176f",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_idle.png"
+    },
+    {
+      "path": "src-tauri/resources/handy.png",
+      "git_blob_sha": "7a1e4767703fba0230a31f35204b8447c97f0d2e",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/handy.png"
+    },
+    {
+      "path": "src-tauri/resources/tray_idle_warning_dark.png",
+      "git_blob_sha": "6f1619f0b3db458d00a4d03ae02639058302f4f3",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_idle_warning_dark.png"
+    },
+    {
+      "path": "src-tauri/resources/transcribing.png",
+      "git_blob_sha": "4456ceb54d8fe5c024b82d7589d5f19bfd2e4fe3",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/transcribing.png"
+    },
+    {
+      "path": "src-tauri/resources/tray_recording.png",
+      "git_blob_sha": "8839e844fea9cf30b70a0e8be6ef414d3e43e8dd",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_recording.png"
+    },
+    {
+      "path": "src-tauri/resources/tray_idle_dark.png",
+      "git_blob_sha": "873b11b3a0c7689c1739835fa780585b3c5c0247",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_idle_dark.png"
+    },
+    {
+      "path": "src-tauri/resources/tray_transcribing.png",
+      "git_blob_sha": "bb6fb25a38fa9926a74256a2f934e4d6fda036e0",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_transcribing.png"
+    },
+    {
+      "path": "src-tauri/resources/tray_idle_warning.png",
+      "git_blob_sha": "7fc1f6cf68a160a050f84b8ab226beec400b1517",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_idle_warning.png"
+    },
+    {
+      "path": "src-tauri/resources/tray_recording_dark.png",
+      "git_blob_sha": "d37b8bd1e7b845cb562f67258d6b123a45f1659d",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/tray_recording_dark.png"
+    },
+    {
+      "path": "src-tauri/resources/models/silero_vad_v4.onnx",
+      "git_blob_sha": "e6db48d6e2a0797a2ec173c008384f7710189344",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/resources/models/silero_vad_v4.onnx"
+    },
+    {
+      "path": "src-tauri/icons/Square30x30Logo.png",
+      "git_blob_sha": "59ed9ca4f59fc9ee62e620bf4ef6af07d6ea902e",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square30x30Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square150x150Logo.png",
+      "git_blob_sha": "6d5c06b729d9531e21d1eac5096b492aacb4553c",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square150x150Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/StoreLogo.png",
+      "git_blob_sha": "9a9f483953787c7e16e06a5ba7d96b6e72b93664",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/StoreLogo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square107x107Logo.png",
+      "git_blob_sha": "34ec15c637776eb398d0cfa39044107be9d138d4",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square107x107Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square89x89Logo.png",
+      "git_blob_sha": "af73f9a9b9675cd4aa482ff9b7eb0f635eb16e76",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square89x89Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square310x310Logo.png",
+      "git_blob_sha": "12e12ed70c68fd62d3585c8eb4ef1eb38e2b893b",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square310x310Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square142x142Logo.png",
+      "git_blob_sha": "f7b95eaf68b800806a3a8451ab9da319a3bcffba",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square142x142Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/logo.png",
+      "git_blob_sha": "0cdfec71f741e2eae2736f679b97184c04163305",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/logo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square284x284Logo.png",
+      "git_blob_sha": "1ee6d501b372cb29e1edd326069cc9d9af00f880",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square284x284Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square44x44Logo.png",
+      "git_blob_sha": "b539c549de78ec4e963e39910d5f3cfb9edde3c6",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square44x44Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/Square71x71Logo.png",
+      "git_blob_sha": "1f0f5bb197305b6d3eae20086812bb823588c4c2",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/Square71x71Logo.png"
+    },
+    {
+      "path": "src-tauri/icons/64x64.png",
+      "git_blob_sha": "e4684599cf75747a26a5da1a7bf01e2377b4cd4b",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/64x64.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@3x.png",
+      "git_blob_sha": "75a3a544a3764b577d4b41c186d963a66e6ea5df",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-20x20@3x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-512@2x.png",
+      "git_blob_sha": "8ac533e36927a7f53abea3588271f11d2bd975a0",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-512@2x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-83.5x83.5@2x.png",
+      "git_blob_sha": "8db3d2fa6dfc533d16a4a3a1ad3235d216c44dd5",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-83.5x83.5@2x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@2x.png",
+      "git_blob_sha": "91aba3c7114886bdc476e6bf888f0967cb9caf12",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-20x20@2x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@3x.png",
+      "git_blob_sha": "e18d46f2f988757c8d807d12a5c3cf0a6f4d28f4",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-29x29@3x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@2x.png",
+      "git_blob_sha": "68f773fa44e0bd33ecaf4efb0bd7e2362e485f5e",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-40x40@2x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-60x60@3x.png",
+      "git_blob_sha": "f614d00b9a60410831dae8e52989cb0d632364a3",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-60x60@3x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@2x-1.png",
+      "git_blob_sha": "68f773fa44e0bd33ecaf4efb0bd7e2362e485f5e",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-40x40@2x-1.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@2x-1.png",
+      "git_blob_sha": "91aba3c7114886bdc476e6bf888f0967cb9caf12",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-20x20@2x-1.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-60x60@2x.png",
+      "git_blob_sha": "afcaed58c35f934acbde9bd36e567368688bb9de",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-60x60@2x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-76x76@1x.png",
+      "git_blob_sha": "5fd0658d42b0ef795e1e1acaee83dfda28e623af",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-76x76@1x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@3x.png",
+      "git_blob_sha": "afcaed58c35f934acbde9bd36e567368688bb9de",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-40x40@3x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@2x.png",
+      "git_blob_sha": "8029ecdbbbd8bf013ce0b2be11968e5a600b0aa9",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-29x29@2x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-76x76@2x.png",
+      "git_blob_sha": "dc2bbe7f336fd53db4be73c92999b8e3c93f585d",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-76x76@2x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@1x.png",
+      "git_blob_sha": "78d805524ef839aa3a63085d2a66751b05195483",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-29x29@1x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-40x40@1x.png",
+      "git_blob_sha": "91aba3c7114886bdc476e6bf888f0967cb9caf12",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-40x40@1x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-20x20@1x.png",
+      "git_blob_sha": "0d21a151ff159d13678546b294541e82147cfe87",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-20x20@1x.png"
+    },
+    {
+      "path": "src-tauri/icons/ios/AppIcon-29x29@2x-1.png",
+      "git_blob_sha": "8029ecdbbbd8bf013ce0b2be11968e5a600b0aa9",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/ios/AppIcon-29x29@2x-1.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher_foreground.png",
+      "git_blob_sha": "9597ae804d6f686f939b7a845598d4aef81adda5",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher.png",
+      "git_blob_sha": "8abd65227ef3f24db176aa72a8ecc7fd204ef2ba",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-mdpi/ic_launcher_round.png",
+      "git_blob_sha": "8abd65227ef3f24db176aa72a8ecc7fd204ef2ba",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher_foreground.png",
+      "git_blob_sha": "87766d424da1bbb0cb6710b974f609fdec526309",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher.png",
+      "git_blob_sha": "bf59e1ec1a69b7ee074803beecf49db354ecf75f",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-hdpi/ic_launcher_round.png",
+      "git_blob_sha": "bf59e1ec1a69b7ee074803beecf49db354ecf75f",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_foreground.png",
+      "git_blob_sha": "a66141ac83cf2b46317ce59b49452d4d434a90d6",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher.png",
+      "git_blob_sha": "552687351c3c69f61f838a37869ce6d1bd076af3",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_round.png",
+      "git_blob_sha": "552687351c3c69f61f838a37869ce6d1bd076af3",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_foreground.png",
+      "git_blob_sha": "26983c498394e13648bad665d7eb19046f095bee",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher.png",
+      "git_blob_sha": "595f19c2f3fd04b4232dc319ed35bc55d6b0d408",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_round.png",
+      "git_blob_sha": "595f19c2f3fd04b4232dc319ed35bc55d6b0d408",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher_foreground.png",
+      "git_blob_sha": "a05f16c626eceb41285d21cdf2f97f532fd9b942",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher.png",
+      "git_blob_sha": "49cacd50737abf2ee8748e9eb897589ef252978e",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+      "path": "src-tauri/icons/android/mipmap-xhdpi/ic_launcher_round.png",
+      "git_blob_sha": "49cacd50737abf2ee8748e9eb897589ef252978e",
+      "url": "https://raw.githubusercontent.com/cjpais/Handy/14f6f0d31cb22a4268acfbddba3052820fd0a06e/src-tauri/icons/android/mipmap-xhdpi/ic_launcher_round.png"
+    }
+  ]
+}
